@@ -12,6 +12,8 @@ import MapKit
 class ViewController: UIViewController {
 
     private let locationManager = CLLocationManager();
+    private var currentCoordinate: CLLocationCoordinate2D?;
+    
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,28 @@ class ViewController: UIViewController {
     private func configureLocationServices(){
         locationManager.delegate = self;
         
-        if(CLLocationManager.authorizationStatus() == .notDetermined){
+        let status = CLLocationManager.authorizationStatus();
+        
+        if( status == .notDetermined){
             
             locationManager.requestAlwaysAuthorization(); //allways using location - we can change this if we want
+        } else if (status == .authorizedAlways || status == .authorizedWhenInUse){
+            //else
+            beginLocationUpdates(locationManager: locationManager);
+            
         }
+    }
+    
+    private func zoomToLatestLocation(with coordinate:CLLocationCoordinate2D){
+        
+        let zoomRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000);
+        mapView.setRegion(zoomRegion, animated: true);
+    }
+    
+    private func beginLocationUpdates(locationManager: CLLocationManager){
+        mapView.showsUserLocation = true;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest; //accuracy of location data
+        locationManager.startUpdatingLocation();
     }
 }
 
@@ -35,11 +55,19 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        <#code#>
+        guard let latestLocation = locations.first else { return }
+        
+        if(currentCoordinate == nil){
+            zoomToLatestLocation(with: latestLocation.coordinate); //zoom to current location
+        }
+        
+        currentCoordinate = latestLocation.coordinate; //set location
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        <#code#>
+        if (status == .authorizedAlways || status == .authorizedWhenInUse){
+            beginLocationUpdates(locationManager: manager);
+        }
     }
 }
 
