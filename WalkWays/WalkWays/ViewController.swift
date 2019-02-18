@@ -11,6 +11,8 @@ import MapKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     private let locationManager = CLLocationManager();
     private var currentCoordinate: CLLocationCoordinate2D?;
     
@@ -19,6 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureLocationServices();
+        searchBar.barTintColor = .white;
+        //searchBar.searchBarStyle = .minimal;
     }
     
     

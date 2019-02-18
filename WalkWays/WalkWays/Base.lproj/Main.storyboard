@@ -24,18 +24,32 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ql8-7A-NRa"/>
                                 </connections>
                             </mapView>
+                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Where to?" translatesAutoresizingMaskIntoConstraints="NO" id="3Fh-X5-wck">
+                                <rect key="frame" x="71" y="728" width="272" height="56"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Recent spot #1</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3Fh-X5-wck" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="648" id="Z37-h8-Qd0"/>
                             <constraint firstItem="g87-OY-MEA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aE7-I0-GJN"/>
                             <constraint firstItem="g87-OY-MEA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d4U-Iu-KCH"/>
+                            <constraint firstItem="3Fh-X5-wck" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="71" id="f03-zD-yxx"/>
                             <constraint firstItem="g87-OY-MEA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jJP-4l-Lsh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Fh-X5-wck" secondAttribute="bottom" constant="114" id="rcV-QS-TDn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Fh-X5-wck" secondAttribute="trailing" constant="71" id="xty-dz-64Z"/>
                             <constraint firstAttribute="bottom" secondItem="g87-OY-MEA" secondAttribute="bottom" id="y4u-9z-kaC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="g87-OY-MEA" id="3GZ-zQ-Y37"/>
+                        <outlet property="searchBar" destination="3Fh-X5-wck" id="B8v-jC-DL1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -43,4 +57,5 @@
             <point key="canvasLocation" x="57.971014492753625" y="20.758928571428569"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.097623995150000004" blue="0.050905056460000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
